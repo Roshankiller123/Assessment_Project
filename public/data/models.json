@@ -1,10 +1,6 @@
 {
   "data": [
-    {
-      "id": "gpt-3.5",
-      "name": "GPT-3.5",
-      "desc": "Fast, good for general tasks"
-    },
+    { "id": "gpt-3.5", "name": "GPT-3.5", "desc": "Fast, good for general tasks" },
     { "id": "gpt-4", "name": "GPT-4", "desc": "Better reasoning and clarity" },
     { "id": "custom-1", "name": "Custom", "desc": "Small demo model" }
   ]

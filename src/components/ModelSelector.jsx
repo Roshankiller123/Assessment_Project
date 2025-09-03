@@ -15,11 +15,15 @@ export default function ModelSelector() {
         onChange={(e) => setModel(e.target.value)}
         className="w-full p-2 rounded border text-black"
       >
-        {models.map((m) => (
-          <option key={m.id} value={m.id}>
-            {m.name} — {m.desc}
-          </option>
-        ))}
+        {models.length === 0 ? (
+          <option disabled>Loading models…</option>
+        ) : (
+          models.map((m) => (
+            <option key={m.id} value={m.id}>
+              {m.name} — {m.desc}
+            </option>
+          ))
+        )}
       </select>
     </label>
   );

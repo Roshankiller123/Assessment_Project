@@ -14,22 +14,52 @@ export function SessionProvider({ children }) {
   const [model, setModel] = useState(null);
   const [template, setTemplate] = useState(null);
   const [params, setParams] = useState({ temperature: 0.7, maxTokens: 150 });
-  const [chat, setChat] = useState([]);
+  const [chat, setChat] = useState([]); // newest first
+
+  const fallbackModels = [
+    { id: "gpt-3.5", name: "GPT-3.5", desc: "Fast, good for general tasks" },
+    { id: "gpt-4", name: "GPT-4", desc: "Better reasoning and clarity" },
+    { id: "custom-1", name: "Custom", desc: "Small demo model" },
+  ];
+
+  const fallbackTemplates = [
+    { id: "t1", title: "Summarize", prompt: "Summarize the following text:" },
+    { id: "t2", title: "Rewrite", prompt: "Rewrite this professionally:" },
+  ];
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+
+      const [mRes, tRes] = await Promise.all([
+        fetch("/data/models.json"),
+        fetch("/data/templates.json"),
+      ]);
+
+      if (!mRes.ok || !tRes.ok) {
+        throw new Error("Failed to fetch files");
+      }
+
+      const m = await mRes.json();
+      const t = await tRes.json();
+
+      setModels(m.data || fallbackModels);
+      setTemplates(t.data || fallbackTemplates);
+      setModel(m.data?.[0]?.id || fallbackModels[0].id);
+      setTemplate(t.data?.[0]?.id || fallbackTemplates[0].id);
+    } catch (e) {
+      setError(e.message);
+      setModels(fallbackModels);
+      setTemplates(fallbackTemplates);
+      setModel(fallbackModels[0].id);
+      setTemplate(fallbackTemplates[0].id);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    setLoading(true);
-    Promise.all([
-      fetch("/data/models.json").then((r) => r.json()),
-      fetch("/data/templates.json").then((r) => r.json()),
-    ])
-      .then(([m, t]) => {
-        setModels(m.data || []);
-        setTemplates(t.data || []);
-        setModel(m.data?.[0]?.id || null);
-        setTemplate(t.data?.[0]?.id || null);
-      })
-      .catch((e) => setError(e.message))
-      .finally(() => setLoading(false));
+    fetchData();
   }, []);
 
   const addChat = (item) => setChat((prev) => [item, ...prev]);
