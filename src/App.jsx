@@ -27,7 +27,7 @@ function AppInner() {
         <ThemeToggle />
       </motion.header>
 
-      {/* Main layout with staggered animation */}
+      {/* Main layout*/}
       <motion.main
         className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6"
         initial="hidden"
