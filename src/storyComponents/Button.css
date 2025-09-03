@@ -1,0 +1,69 @@
+/* Button.css */
+
+/* Base styles */
+.btn {
+  border-radius: 6px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border: none;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Variants */
+.btn-primary {
+  background-color: #4f46e5;
+  color: white;
+}
+.btn-primary:hover:not(:disabled) {
+  background-color: #4338ca;
+}
+
+.btn-secondary {
+  background-color: #4b5563;
+  color: white;
+}
+.btn-secondary:hover:not(:disabled) {
+  background-color: #374151;
+}
+
+.btn-success {
+  background-color: #16a34a;
+  color: white;
+}
+.btn-success:hover:not(:disabled) {
+  background-color: #15803d;
+}
+
+/* Sizes */
+.btn-sm {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+}
+.btn-md {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+.btn-lg {
+  padding: 0.75rem 1.25rem;
+  font-size: 1.125rem;
+}
+
+/* Full width */
+.btn-full {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Hover effect */
+.btn:not(:disabled):hover {
+  transform: scale(1.05);
+}

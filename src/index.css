@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:focus {
+  outline: 3px solid rgba(99, 102, 241, 0.25);
+  outline-offset: 2px;
+}
+
+/* small dark mode support */
+.dark {
+  --bg: #111827;
+  --text: #f3f4f6;
+}
+
+/* index.css */
+html {
+  transition: background-color 0.3s, color 0.3s;
+}

@@ -1,0 +1,10 @@
+{
+  "data": [
+    {
+      "id": "t1",
+      "title": "Summarize",
+      "prompt": "Summarize the following text:"
+    },
+    { "id": "t2", "title": "Rewrite", "prompt": "Rewrite this professionally:" }
+  ]
+}
